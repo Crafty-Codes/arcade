@@ -1,2 +1,2 @@
-# tamagotchi
-Tamagotchi for raspi pico
+#  Flappybird
+Flappybird for raspi pico
