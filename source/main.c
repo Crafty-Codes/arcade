@@ -1,5 +1,46 @@
 ﻿#include "GUI_Paint.h"
 #include "storage/Image.h"
+#include "spec/Screen.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+
+int16_t xBird = 60;
+int16_t yBird = 59;
+
+void Bird(int key)
+{
+  if (DEV_Digital_Read(key) == 0 && xBird - 5 >= 0)
+  {
+    xBird = xBird - 5;
+  }
+  else if (xBird + 5 <= HEIGHT - 13)
+  {
+    xBird = xBird + 5;
+  }
+
+  Paint_DrawRectangle(xBird, yBird, xBird + 10, yBird + 10, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+}
+
+uint8_t yTube = 0;
+uint8_t xTube = 100;
+
+void Tube(void)
+{
+  ++yTube;
+  Paint_DrawRectangle(xTube, yTube, HEIGHT, yTube+10, BLUE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+
+  if (yTube+10 >= 128)
+  {
+    yTube = 0;
+  }
+}
+
+bool collisionHandler(void)
+{
+
+}
 
 int main(void)
 {
@@ -8,41 +49,57 @@ int main(void)
   {
     return -1;
   }
-  
+
   /* LCD Init */
   LCD_1IN44_Init(0);
   LCD_1IN44_Clear(WHITE);
 
   // LCD_SetBacklight(1023);
-  UDOUBLE Imagesize = 128 * 128 * 2;
+  UWORD Imagesize = WIDTH * HEIGHT * 2;
   UWORD *BlackImage;
   if ((BlackImage = (UWORD *)malloc(Imagesize)) == NULL)
   {
     exit(0);
   }
 
-  
   // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
-  Paint_NewImage((UBYTE *)BlackImage, 128, 128, 0, WHITE);
+  Paint_NewImage((UBYTE *)BlackImage, WIDTH, HEIGHT, 0, WHITE);
   Paint_SetScale(65);
   Paint_Clear(WHITE);
   Paint_SetRotate(ROTATE_0);
   Paint_Clear(WHITE);
 
-  int i, j, x = 0;
-  for (j = 0; j < 128; j++)
+  // int i, j, x = 0;
+  // for (j = 0; j < WIDTH; j++)
+  // {
+  //   for (i = 0; i < HEIGHT; i++)
+  //   {
+  //     Paint_SetPixel(i, j, mario[x++]);
+  //   }
+  // }
+
+  int key0 = 15;
+  int key1 = 17;
+  int key2 = 2;
+  int key3 = 3;
+
+  SET_Infrared_PIN(key0);
+  SET_Infrared_PIN(key1);
+  SET_Infrared_PIN(key2);
+  SET_Infrared_PIN(key3);
+
+  while (1)
   {
-    for (i = 0; i < 128; i++)
-    {
-      Paint_SetPixel(i, j, mario[x++]);
-    }
+    DEV_Delay_ms(100);
+    Paint_Clear(WHITE);
+
+    Bird(key1);
+
+    Tube();
+
+    // Grass
+    Paint_DrawRectangle(HEIGHT, 0, HEIGHT - 3, WIDTH, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+    LCD_1IN44_Display(BlackImage);
   }
-
-  LCD_1IN44_Display(BlackImage);
-
-  while (true)
-  {
-  }
-
   return 0;
 }
