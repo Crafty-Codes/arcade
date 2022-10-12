@@ -6,40 +6,49 @@
 #include <unistd.h>
 #include <pthread.h>
 
-int16_t xBird = 60;
-int16_t yBird = 59;
+int16_t xBird = 59;
+int16_t yBird = 60;
 
 void Bird(int key)
 {
-  if (DEV_Digital_Read(key) == 0 && xBird - 5 >= 0)
+  if (DEV_Digital_Read(key) == 0 && yBird > 0)
   {
-    xBird = xBird - 5;
+    yBird -= 5;
   }
-  else if (xBird + 5 <= HEIGHT - 13)
+  else if (yBird + 5 <= HEIGHT - 13)
   {
-    xBird = xBird + 5;
+    yBird += 5;
   }
 
   Paint_DrawRectangle(xBird, yBird, xBird + 10, yBird + 10, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
 }
 
-uint8_t yTube = 0;
-uint8_t xTube = 100;
+uint8_t highscore = 0;
+uint8_t score = 0;
+
+uint8_t yTube = 100;
+uint8_t xTube = WIDTH;
 
 void Tube(void)
 {
-  ++yTube;
-  Paint_DrawRectangle(xTube, yTube, HEIGHT, yTube + 10, BLUE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+  --xTube;
+  Paint_DrawRectangle(xTube - 10, yTube, xTube, HEIGHT, BLUE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
 
-  if (yTube + 10 >= 128)
+  if (xTube <= 1)
   {
-    yTube = 0;
+    ++score;
+    if (score > highscore)
+    {
+      highscore = score;
+    }
+
+    xTube = WIDTH;
   }
 }
 
 bool collisionHandler(void)
 {
-  return yBird - 10 <= yTube && yBird > yTube && xBird + 10 >= xTube;
+  return xBird + 10 >= xTube - 10 && xBird <= xTube && yBird + 10 >= yTube;
 }
 
 int main(void)
@@ -66,7 +75,7 @@ int main(void)
   Paint_NewImage((UBYTE *)BlackImage, WIDTH, HEIGHT, 0, WHITE);
   Paint_SetScale(65);
   Paint_Clear(WHITE);
-  Paint_SetRotate(ROTATE_0);
+  Paint_SetRotate(ROTATE_270);
   Paint_Clear(WHITE);
 
   int key0 = 15;
@@ -79,19 +88,36 @@ int main(void)
   SET_Infrared_PIN(key2);
   SET_Infrared_PIN(key3);
 
-  while (!collisionHandler())
+  while (1)
   {
-    DEV_Delay_ms(100);
-    Paint_Clear(WHITE);
 
-    Bird(key1);
+    while (!collisionHandler())
+    {
+      DEV_Delay_ms(100);
+      Paint_Clear(WHITE);
 
-    Tube();
+      Bird(key1);
 
-    // Grass
-    Paint_DrawRectangle(HEIGHT, 0, HEIGHT - 3, WIDTH, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+      Tube();
 
+      // Grass
+      Paint_DrawRectangle(0, HEIGHT - 3, WIDTH, HEIGHT, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+
+      LCD_1IN44_Display(BlackImage);
+    }
+
+    Paint_DrawString_EN(13, 25, "GAME OVER", &Font16, WHITE, BLACK);
     LCD_1IN44_Display(BlackImage);
+
+    if (DEV_Digital_Read(key2) == 0)
+    {
+      xBird = 59;
+      yBird = 60;
+      yTube = 100;
+      xTube = WIDTH;
+      score = 0;
+    }
   }
+
   return 0;
 }
