@@ -4,6 +4,8 @@
         "gui_paint.h": "c",
         "fonts.h": "c",
         "screen.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "*.tcc": "c",
+        "stdint.h": "c"
     }
 }

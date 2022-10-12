@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 include(../pico-sdk/pico_sdk_init.cmake)
-project(tamagotchi)
+project(flappybird)
 pico_sdk_init()
 
 enable_language(ASM)
@@ -26,15 +26,15 @@ include_directories(./lib/OLED)
 
 
 # 生成可执行文件
-add_executable(tamagotchi 
+add_executable(flappybird 
 main.c
 )
 
 # enable usb output, disable uart output
-pico_enable_stdio_usb(tamagotchi 1)
-pico_enable_stdio_uart(tamagotchi 1)
+pico_enable_stdio_usb(flappybird 1)
+pico_enable_stdio_uart(flappybird 1)
 
 # create map/bin/hex/uf2 file etc.
-pico_add_extra_outputs(tamagotchi)
+pico_add_extra_outputs(flappybird)
 
-target_link_libraries(tamagotchi LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi)
+target_link_libraries(flappybird LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi)
