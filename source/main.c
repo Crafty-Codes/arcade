@@ -29,9 +29,9 @@ uint8_t xTube = 100;
 void Tube(void)
 {
   ++yTube;
-  Paint_DrawRectangle(xTube, yTube, HEIGHT, yTube+10, BLUE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+  Paint_DrawRectangle(xTube, yTube, HEIGHT, yTube + 10, BLUE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
 
-  if (yTube+10 >= 128)
+  if (yTube + 10 >= 128)
   {
     yTube = 0;
   }
@@ -39,7 +39,7 @@ void Tube(void)
 
 bool collisionHandler(void)
 {
-
+  return yBird - 10 <= yTube && yBird > yTube && xBird + 10 >= xTube;
 }
 
 int main(void)
@@ -88,7 +88,7 @@ int main(void)
   SET_Infrared_PIN(key2);
   SET_Infrared_PIN(key3);
 
-  while (1)
+  while (!collisionHandler())
   {
     DEV_Delay_ms(100);
     Paint_Clear(WHITE);
@@ -99,6 +99,7 @@ int main(void)
 
     // Grass
     Paint_DrawRectangle(HEIGHT, 0, HEIGHT - 3, WIDTH, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+
     LCD_1IN44_Display(BlackImage);
   }
   return 0;
