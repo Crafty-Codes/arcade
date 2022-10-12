@@ -26,12 +26,13 @@ int main(void)
 
       // Grass
       Paint_DrawRectangle(0, HEIGHT - 3, WIDTH, HEIGHT, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-      showScoreboard();
+      showScore();
 
       LCD_1IN44_Display(BlackImage);
     }
 
     Paint_DrawString_EN(13, 25, "GAME OVER", &Font16, WHITE, BLACK);
+    showHighscore();
     LCD_1IN44_Display(BlackImage);
 
     if (DEV_Digital_Read(key2) == 0)

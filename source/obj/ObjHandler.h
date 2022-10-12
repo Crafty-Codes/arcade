@@ -12,4 +12,5 @@ void objReset()
   yBird = 60;
   yTube = 100;
   xTube = WIDTH;
+  score = 0;
 }

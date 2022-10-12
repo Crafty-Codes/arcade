@@ -5,7 +5,16 @@
 uint8_t highscore = 0;
 uint8_t score = 0;
 
-void showScoreboard()
+void showScore()
+{
+    char sc[255];
+
+    sprintf(sc, "score: %d", score);
+
+    Paint_DrawString_EN(5, 5, sc, &Font12, WHITE, BLACK);
+}
+
+void showHighscore()
 {
     if (score > highscore)
     {
@@ -14,7 +23,7 @@ void showScoreboard()
 
     char sc[255];
 
-    sprintf(sc, "score: %d", score);
+    sprintf(sc, "highscore: %d", highscore);
 
-    Paint_DrawString_EN(5, 5, sc, &Font12, WHITE, BLACK);
+    Paint_DrawString_EN(64-Font12.Width*7, 58, sc, &Font12, WHITE, BLACK);
 }
