@@ -69,15 +69,6 @@ int main(void)
   Paint_SetRotate(ROTATE_0);
   Paint_Clear(WHITE);
 
-  // int i, j, x = 0;
-  // for (j = 0; j < WIDTH; j++)
-  // {
-  //   for (i = 0; i < HEIGHT; i++)
-  //   {
-  //     Paint_SetPixel(i, j, mario[x++]);
-  //   }
-  // }
-
   int key0 = 15;
   int key1 = 17;
   int key2 = 2;
