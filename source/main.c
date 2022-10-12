@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "obj/ObjHandler.h"
+#include "screen/Scoarboard.h"
 
 int main(void)
 {
@@ -25,6 +26,7 @@ int main(void)
 
       // Grass
       Paint_DrawRectangle(0, HEIGHT - 3, WIDTH, HEIGHT, GREEN, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+      showScoreboard();
 
       LCD_1IN44_Display(BlackImage);
     }

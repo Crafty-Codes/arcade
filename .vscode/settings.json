@@ -6,6 +6,10 @@
         "screen.h": "c",
         "string.h": "c",
         "*.tcc": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "converter.h": "c",
+        "algorithm": "c",
+        "string_view": "c",
+        "scoarboard.h": "c"
     }
 }

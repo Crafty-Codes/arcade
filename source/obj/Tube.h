@@ -2,6 +2,7 @@
 #include "../screen/Screen.h"
 #include "../lib/GUI/GUI_Paint.h"
 #include "../util/Random.h"
+#include "../screen/Scoarboard.h"
 
 uint8_t yTube = 100;
 uint8_t xTube = WIDTH;
@@ -15,5 +16,6 @@ void Tube(void)
   {
     yTube = getRandom(48, 120);
     xTube = WIDTH;
+    score++;
   }
 }
