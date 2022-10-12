@@ -14,10 +14,15 @@ int main(void)
 
   while (1)
   {
-
+    double gamespeed = 100;
     while (!collisionHandler())
     {
-      DEV_Delay_ms(100);
+      DEV_Delay_ms(gamespeed);
+      
+      if (gamespeed > 10){
+        gamespeed -= 0.1;
+      }
+      
       Paint_Clear(WHITE);
 
       Bird(key1);
