@@ -1,6 +1,6 @@
 ﻿#include "GUI_Paint.h"
 #include "storage/Image.h"
-#include "spec/Screen.h"
+#include "screen/Screen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

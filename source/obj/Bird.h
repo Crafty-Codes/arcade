@@ -1,5 +1,5 @@
 #include "stdint.h"
-#include "../spec/Screen.h"
+#include "../screen/Screen.h"
 #include "../lib/GUI/GUI_Paint.h"
 
 int16_t xBird = 59;
