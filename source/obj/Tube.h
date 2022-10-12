@@ -1,6 +1,7 @@
 #include "stdint.h"
 #include "../screen/Screen.h"
 #include "../lib/GUI/GUI_Paint.h"
+#include "../util/Random.h"
 
 uint8_t yTube = 100;
 uint8_t xTube = WIDTH;
@@ -12,6 +13,7 @@ void Tube(void)
 
   if (xTube <= 1)
   {
+    yTube = getRandom(48, 120);
     xTube = WIDTH;
   }
 }
