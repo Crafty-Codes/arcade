@@ -1,20 +1,20 @@
 ﻿#include "../lib/GUI/GUI_Paint.h"
 #include "storage/Image.h"
-#include "screen/Screen.h"
+#include "../screen/Screen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
 #include "obj/ObjHandler.h"
-#include "screen/Scoarboard.h"
+#include "storage/Scoarboard.h"
 
 void LCD_1IN44_Display(UWORD *Image);
 
-int mainFlappy(void)
+void mainFlappy(void)
 {
-  initDisplay();
+  bool gameFlappy = true;
 
-  while (1)
+  while (gameFlappy)
   {
     double gamespeed = 100;
     while (!collisionHandler())
@@ -45,9 +45,12 @@ int mainFlappy(void)
 
     if (DEV_Digital_Read(key2) == 0)
     {
+      gameFlappy = false;
+      objReset();
+    }
+    else if (DEV_Digital_Read(key1) == 0)
+    {
       objReset();
     }
   }
-
-  return 0;
 }

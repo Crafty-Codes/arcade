@@ -10,6 +10,8 @@
         "converter.h": "c",
         "algorithm": "c",
         "string_view": "c",
-        "scoarboard.h": "c"
+        "scoarboard.h": "c",
+        "drawimage.h": "c",
+        "objhandler.h": "c"
     }
 }

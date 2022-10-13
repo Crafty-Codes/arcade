@@ -2,7 +2,8 @@
 #include "../screen/Screen.h"
 #include "../lib/GUI/GUI_Paint.h"
 #include "../util/Random.h"
-#include "../screen/Scoarboard.h"
+#include "../../screen/Screen.h"
+#include "../storage/Scoarboard.h"
 
 uint8_t yTube = 100;
 uint8_t xTube = WIDTH;

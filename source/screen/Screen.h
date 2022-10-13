@@ -1,8 +1,9 @@
 #pragma once
 #include "stdint.h"
+#include "../GUI/GUI_Paint.h"
 
 void LCD_1IN44_Init(uint8_t Scan_dir);
-void LCD_1IN44_Clear(UWORD Color);
+void LCD_1IN44_Clear(int Color);
 void SET_Infrared_PIN(uint8_t PIN);
 void *malloc(size_t __size);
 void exit(int status);
