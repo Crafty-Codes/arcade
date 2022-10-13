@@ -11,6 +11,6 @@ void objReset(void)
   xBird = 59;
   yBird = 60;
   yTube = 100;
-  xTube = WIDTH;
+  xTube = SCREENWIDTH;
   score = 0;
 }

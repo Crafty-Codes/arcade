@@ -25,11 +25,15 @@ include_directories(./lib/LCD)
 include_directories(./lib/Infrared)
 include_directories(./lib/OLED)
 include_directories(./flappy)
+include_directories(./screen)
+include_directories(./util)
 
 
 # 生成可执行文件
 add_executable(arcade 
 main.c
+screen/Screen.c
+util/Random.c
 )
 
 # enable usb output, disable uart output
