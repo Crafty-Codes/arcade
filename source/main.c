@@ -41,6 +41,7 @@ int main(void)
         ++pos;
       }
     }
+    DEV_Delay_ms(10);
   }
 
   return 0;

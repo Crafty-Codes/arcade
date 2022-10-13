@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "../lib/GUI/GUI_Paint.h"
 
-void DrawImage(const int *image)
+void DrawImage(const uint16_t *image)
 {
     int i, j, x = 0;
     for (j = 0; j < 128; j++)
