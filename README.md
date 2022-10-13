@@ -1,2 +1,2 @@
-#  Flappybird
-Flappybird for raspi pico
+#  arcade
+arcade for raspi pico
