@@ -1,4 +1,4 @@
-#pragma once
+#include "Scoreboard.h"
 #include <stdint.h>
 #include "../GUI/GUI_Paint.h"
 

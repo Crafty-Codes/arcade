@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <pthread.h>
 #include "obj/ObjHandler.h"
 #include "LCD_1in44.h"
-#include "storage/Scoarboard.h"
+#include "storage/Scoreboard.h"
+#include "obj/Bird.h"
+#include "obj/Tube.h"
 
 void mainFlappy(void)
 {

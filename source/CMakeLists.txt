@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.17)
 include(../pico-sdk/pico_sdk_init.cmake)
 
-
 project(arcadeHall)
-set(TARGET_NAME ${PROJECT_NAME})
-set(SRC_PATH ${MODULE_ROOT})
+
+pico_sdk_init()
+
+enable_language(ASM)
 
 add_executable(arcade 
 main.c
@@ -12,9 +13,6 @@ screen/Screen.c
 util/Random.c
 )
 
-pico_sdk_init()
-
-enable_language(ASM)
 
 #添加编译子目录
 add_subdirectory(lib/Config)
@@ -38,7 +36,6 @@ include_directories(./lib/OLED)
 include_directories(./flappy)
 include_directories(./screen)
 include_directories(./util)
-
 
 
 # enable usb output, disable uart output

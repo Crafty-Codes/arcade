@@ -1,16 +1,5 @@
-#include "Bird.h"
-#include "Tube.h"
+#include <stdbool.h>
 
-bool collisionHandler(void)
-{
-  return xBird + 10 >= xTube - 10 && xBird <= xTube && yBird + 10 >= yTube;
-}
+bool collisionHandler(void);
 
-void objReset(void)
-{
-  xBird = 59;
-  yBird = 60;
-  yTube = 100;
-  xTube = SCREENWIDTH;
-  score = 0;
-}
+void objReset(void);
