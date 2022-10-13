@@ -1,6 +1,8 @@
 ﻿#include "flappy/MainFlappy.h"
 #include "image/Draw.h"
 #include "image/StartScreen.h"
+#include "LCD_1in44.h"
+#include "screen/Screen.h"
 #include <stdint.h>
 
 int main(void)

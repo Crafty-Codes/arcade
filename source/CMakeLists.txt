@@ -1,6 +1,17 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.17)
 include(../pico-sdk/pico_sdk_init.cmake)
-project(arcade)
+
+
+project(arcadeHall)
+set(TARGET_NAME ${PROJECT_NAME})
+set(SRC_PATH ${MODULE_ROOT})
+
+add_executable(arcade 
+main.c
+screen/Screen.c
+util/Random.c
+)
+
 pico_sdk_init()
 
 enable_language(ASM)
@@ -29,12 +40,6 @@ include_directories(./screen)
 include_directories(./util)
 
 
-# 生成可执行文件
-add_executable(arcade 
-main.c
-screen/Screen.c
-util/Random.c
-)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(arcade 1)
@@ -42,5 +47,11 @@ pico_enable_stdio_uart(arcade 1)
 
 # create map/bin/hex/uf2 file etc.
 pico_add_extra_outputs(arcade)
+
+target_include_directories(arcade
+    PRIVATE 
+    /workspaces/arcade/source/flappy
+        
+)
 
 target_link_libraries(arcade LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi)

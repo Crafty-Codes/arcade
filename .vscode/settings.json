@@ -13,6 +13,7 @@
         "scoarboard.h": "c",
         "drawimage.h": "c",
         "objhandler.h": "c",
-        "random.h": "c"
+        "random.h": "c",
+        "image.h": "c"
     }
 }
