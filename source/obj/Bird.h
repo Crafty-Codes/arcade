@@ -24,7 +24,7 @@ void Bird(int key)
     yBird -= speed * jumpStrength;
     jumpStrength /= 1.5;
   }
-  else if (yBird + speed <= HEIGHT - 13)
+  else if (yBird <= HEIGHT - 13)
   {
     isJumping = false;
     if (jumpStrength < 2)
