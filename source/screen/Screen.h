@@ -1,6 +1,12 @@
 #pragma once
 #include "stdint.h"
 
+void LCD_1IN44_Init(uint8_t Scan_dir);
+void LCD_1IN44_Clear(UWORD Color);
+void SET_Infrared_PIN(uint8_t PIN);
+void *malloc(size_t __size);
+void exit(int status);
+
 static const uint8_t WIDTH = 128;
 static const uint8_t HEIGHT = WIDTH;
 
@@ -11,7 +17,7 @@ int key3 = 3;
 
 uint16_t *BlackImage;
 
-int initDisplay()
+int initDisplay(void)
 {
   DEV_Delay_ms(100);
   if (DEV_Module_Init() != 0)

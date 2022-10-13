@@ -6,7 +6,7 @@ bool collisionHandler(void)
   return xBird + 10 >= xTube - 10 && xBird <= xTube && yBird + 10 >= yTube;
 }
 
-void objReset()
+void objReset(void)
 {
   xBird = 59;
   yBird = 60;

@@ -8,6 +8,8 @@
 #include "obj/ObjHandler.h"
 #include "screen/Scoarboard.h"
 
+void LCD_1IN44_Display(UWORD *Image);
+
 int main(void)
 {
   initDisplay();
@@ -18,14 +20,15 @@ int main(void)
     while (!collisionHandler())
     {
       DEV_Delay_ms(gamespeed);
-      
-      if (gamespeed > 10){
+
+      if (gamespeed > 10)
+      {
         gamespeed -= 0.1;
       }
-      
+
       Paint_Clear(WHITE);
 
-      Bird(key1);
+      Bird(&key1);
 
       Tube();
 

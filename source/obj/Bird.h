@@ -10,14 +10,14 @@ double jumpStrength = 2;
 
 bool isJumping = false;
 
-void Bird(int key)
+void Bird(int *key)
 {
   if (jumpStrength != 2 && jumpStrength > 0.25 && isJumping && yBird - speed - 2 > 0)
   {
     yBird -= speed * jumpStrength;
     jumpStrength /= 1.5;
   }
-  else if (DEV_Digital_Read(key) == 0 && !isJumping && jumpStrength > 0.25 && yBird - speed - 2 > 0)
+  else if (DEV_Digital_Read(*key) == 0 && !isJumping && jumpStrength > 0.25 && yBird - speed - 2 > 0)
   {
     jumpStrength = 2;
     isJumping = true;

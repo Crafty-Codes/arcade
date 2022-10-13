@@ -5,7 +5,7 @@
 uint8_t highscore = 0;
 uint8_t score = 0;
 
-void showScore()
+void showScore(void)
 {
     char sc[255];
 
@@ -14,7 +14,7 @@ void showScore()
     Paint_DrawString_EN(5, 5, sc, &Font12, WHITE, BLACK);
 }
 
-void showHighscore()
+void showHighscore(void)
 {
     if (score > highscore)
     {
