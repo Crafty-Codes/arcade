@@ -1,7 +1,9 @@
 #include "Shuttle.h"
+extern "C"{
 #include "Screen.h"
 #include "DEV_Config.h"
 #include "GUI_Paint.h"
+}
 
 uint8_t shuttleX = SCREENWIDTH / 2;
 uint8_t shuttleY = SCREENHEIGHT - 20;
