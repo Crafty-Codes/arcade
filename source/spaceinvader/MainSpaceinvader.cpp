@@ -57,8 +57,8 @@ void MainSpaceinvader::handleAliens(void) {
           }
         }
 
-        if (aliens[x][y].getX() == SCREENWIDTH - aliens[x][y].getRadius() ||
-            aliens[x][y].getX() == aliens[x][y].getRadius()) {
+        if (aliens[x][y].getX() + aliens[x][y].getRadius() >= SCREENWIDTH ||
+            aliens[x][y].getX() - aliens[x][y].getRadius() <= 0) {
           changeDirection = true;
         }
 
