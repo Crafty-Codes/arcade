@@ -4,9 +4,9 @@
 #include "screen/Screen.h"
 #include "spaceinvader/MainSpaceinvader.h"
 #include "spaceinvader/obj/Plasma.h"
+#include <iostream>
 #include <stdlib.h>
 #include <vector>
-#include <iostream>
 
 extern "C" {
 #include "GUI_Paint.h"
@@ -23,9 +23,6 @@ int main(void) {
   initDisplay();
   // minicom -b 115200 -o -D /dev/ttyACM0
   stdio_init_all();
-
-  MainFlappy flappy;
-  MainSpaceinvader spaceinvader;
   uint8_t pos = 0;
   while (1) {
     Paint_Clear(WHITE);
@@ -40,12 +37,16 @@ int main(void) {
       Paint_Clear(BLACK);
 
       switch (pos) {
-      case 0:
+      case 0: {
+        MainFlappy flappy;
         flappy.executeFlappy();
         break;
-      case 1:
+      }
+      case 1: {
+        MainSpaceinvader spaceinvader;
         spaceinvader.executeSpaceinvader();
         break;
+      }
       default:
         break;
       }

@@ -22,27 +22,50 @@ void MainSpaceinvader::createAliens(void) {
 }
 
 void MainSpaceinvader::handleAliens(void) {
+  bool allDead = true;
   bool changeDirection = false;
   for (size_t x = 0; x < sizeof(aliens) / sizeof(aliens[0]); x++) {
     for (size_t y = 0; y < sizeof(aliens[0]) / sizeof(aliens[0][0]); y++) {
-      if (direction == RIGHT) {
-        aliens[x][y].moveX(1);
-      } else {
-        aliens[x][y].moveX(-1);
-      }
+      if (aliens[x][y].life == ALIFE) {
+        allDead = false;
 
-      if (down) {
-        aliens[x][y].moveY(1);
-      }
+        if (aliens[x][y].getY() + aliens[x][y].getRadius() >= shuttleY) {
+          status = LOST;
+        }
 
-      if (aliens[x][y].getX() == SCREENWIDTH - aliens[x][y].getRadius() ||
-          aliens[x][y].getX() == aliens[x][y].getRadius()) {
-        changeDirection = true;
-      }
+        if (direction == RIGHT) {
+          aliens[x][y].moveX(1);
+        } else {
+          aliens[x][y].moveX(-1);
+        }
 
-      Paint_DrawCircle(aliens[x][y].getX(), aliens[x][y].getY(),
-                       aliens[x][y].getRadius(), BLUE, DOT_PIXEL_1X1,
-                       DRAW_FILL_FULL);
+        if (down) {
+          aliens[x][y].moveY(1);
+        }
+
+        for (auto &&i : shoots) {
+          // X check
+          if (i.getX() + i.WIDTH >=
+                  aliens[x][y].getX() - aliens[x][y].getRadius() &&
+              i.getX() <= aliens[x][y].getX() + aliens[x][y].getRadius()) {
+            // Y check
+            if (i.getY() <= aliens[x][y].getY() + aliens[x][y].getRadius() &&
+                i.getY() + i.HEIGHT >=
+                    aliens[x][y].getY() - aliens[x][y].getRadius()) {
+              aliens[x][y].life = DEAD;
+            }
+          }
+        }
+
+        if (aliens[x][y].getX() == SCREENWIDTH - aliens[x][y].getRadius() ||
+            aliens[x][y].getX() == aliens[x][y].getRadius()) {
+          changeDirection = true;
+        }
+
+        Paint_DrawCircle(aliens[x][y].getX(), aliens[x][y].getY(),
+                         aliens[x][y].getRadius(), BLUE, DOT_PIXEL_1X1,
+                         DRAW_FILL_FULL);
+      }
     }
   }
   down = false;
@@ -54,12 +77,19 @@ void MainSpaceinvader::handleAliens(void) {
       direction = RIGHT;
     }
   }
+
+  if (allDead) {
+    status = WON;
+  }
 }
 
 void MainSpaceinvader::autoShoot() {
-  if (++timer % 30 == 0) {
-    shoots[(timer / 30) - 1].setPos((shuttleX + 4), shuttleY);
-    if (timer == 150) {
+  timer += 1;
+  if (timer % 30 == 0) {
+    uint16_t tmp = timer;
+    shoots[timer / 30 - 1].setPos((shuttleX + 4), shuttleY);
+
+    if (tmp == 150) {
       timer = 29;
     }
   }
@@ -80,18 +110,41 @@ MainSpaceinvader::MainSpaceinvader() {}
 
 void MainSpaceinvader::executeSpaceinvader() {
   createAliens();
+  bool exit = false;
+  status = PLAYING;
+  for (auto &&i : shoots) {
+    i.setPos(SCREENWIDTH, SCREENHEIGHT);
+  }
+  while (!exit) {
+    while (status == PLAYING) {
+      Paint_Clear(BLACK);
 
-  while (1) {
-    Paint_Clear(BLACK);
+      handleShuttle();
 
-    handleAliens();
+      autoShoot();
 
-    handleShuttle();
+      handleAliens();
 
-    autoShoot();
+      DEV_Delay_ms(50);
 
-    DEV_Delay_ms(50);
+      LCD_1IN44_Display(BlackImage);
+    }
+    if (status == WON) {
+      Paint_DrawString_EN(13, 25, "You WON!", &Font16, BLACK, WHITE);
+    } else {
+      Paint_DrawString_EN(13, 25, "You lost", &Font16, BLACK, WHITE);
+    }
 
     LCD_1IN44_Display(BlackImage);
+
+    if (DEV_Digital_Read(key2) == 0) {
+      exit = true;
+    } else if (DEV_Digital_Read(key1) == 0) {
+      status = PLAYING;
+      createAliens();
+      for (auto &&i : shoots) {
+        i.setPos(SCREENWIDTH, SCREENHEIGHT);
+      }
+    }
   }
 }

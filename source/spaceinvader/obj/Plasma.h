@@ -13,8 +13,8 @@ public:
   Plasma(uint8_t _x, uint8_t _y, uint8_t _height, uint8_t _width);
 
   void setPos(uint8_t _x, uint8_t _y);
-  uint8_t getX();
-  uint8_t getY();
+  const uint8_t& getX();
+  const uint8_t& getY();
 
   void moveUp(uint8_t _move);
 };

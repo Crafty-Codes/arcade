@@ -10,7 +10,7 @@ void Plasma::setPos(uint8_t _x, uint8_t _y) {
   y = _y;
 }
 
-uint8_t Plasma::getX() { return x; }
-uint8_t Plasma::getY() { return y; }
+const uint8_t &Plasma::getX() { return x; }
+const uint8_t &Plasma::getY() { return y; }
 
 void Plasma::moveUp(uint8_t _move) { y -= _move; }
