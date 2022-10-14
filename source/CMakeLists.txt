@@ -16,7 +16,7 @@ enable_language(ASM)
 
 add_executable(arcade 
 main.cpp
-screen/Screen.c
+screen/Screen.cpp
 util/Random.cpp
 )
 

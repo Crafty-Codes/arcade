@@ -1,9 +1,13 @@
 #include "Screen.h"
+extern "C"{
 #include <stdlib.h>
 #include "GUI_Paint.h"
 #include "LCD_1in44.h"
 #include "Infrared.h"
+}
 
+const uint8_t SCREENWIDTH = 128;
+const uint8_t SCREENHEIGHT = 128;
 
 const int key0 = 15;
 const int key1 = 17;
@@ -12,12 +16,12 @@ const int key3 = 3;
 
 uint16_t *BlackImage = NULL;
 
-int initDisplay(void)
+void initDisplay(void)
 {
     DEV_Delay_ms(100);
     if (DEV_Module_Init() != 0)
     {
-        return -1;
+        return;
     }
 
     /* LCD Init */

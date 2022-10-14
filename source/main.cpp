@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "flappy/MainFlappy.h"
 #include "spaceinvader/MainSpaceinvader.h"
+#include "screen/Screen.h"
 
 extern "C"{
 #include "image/Draw.h"
 #include "image/StartScreen.h"
 #include "LCD_1in44.h"
-#include "screen/Screen.h"
 #include <stdint.h>
 }
 
@@ -16,6 +16,7 @@ int main(void)
   initDisplay();
 
   MainFlappy flappy;
+  MainSpaceinvader spaceinvader;
 
   uint8_t pos = 0;
   while (1)
@@ -30,14 +31,15 @@ int main(void)
 
     if (DEV_Digital_Read(key1) == 0)
     {
+        Paint_Clear(BLACK);
+
       switch (pos)
       {
       case 0:
         flappy.executeFlappy();
         break;
-
       case 1:
-        mainSpaceinvader();
+        spaceinvader.executeSpaceinvader();
         break;
       default:
         break;
@@ -54,7 +56,7 @@ int main(void)
         ++pos;
       }
     }
-    DEV_Delay_ms(10);
+    DEV_Delay_ms(50);
   }
 
   return 0;

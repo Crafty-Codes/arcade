@@ -1,28 +1,20 @@
-#ifndef __ALIEN_H
-#define __ALEIN_H
-#include "stdint.h"
+#pragma once
+#include <stdint.h>
 
-typedef struct Alien
+class Alien
 {
-    uint16_t x;
-    uint16_t y;
-    uint8_t width;
-    uint8_t height;
-}Alien;
+private:
+    uint8_t x;
+    uint8_t y;
+    uint8_t radius;
+public:
+    Alien();
+    Alien(uint8_t _x, uint8_t _y, uint8_t _radius);
 
-void Alien__init(Alien* alien, uint16_t x, uint16_t y, uint8_t width, uint8_t height);
+    uint8_t getX();
+    uint8_t getY();
+    uint8_t getRadius();
 
-Alien* Alien__create(uint16_t x, uint16_t y, uint8_t width, uint8_t height);
-
-void Alien__destroy(Alien* alien);
-
-uint16_t Alien__x(Alien* alien);
-uint16_t Alien__y(Alien* alien);
-
-uint8_t Alien__width(Alien* alien);
-uint8_t Alien__height(Alien* alien);
-
-void Alien__moveX(Alien* alien);
-void Alien__moveY(Alien* alien);
-
-#endif
+    void moveX(uint8_t _x);
+    void moveY(uint8_t _y);
+};
