@@ -4,11 +4,12 @@
 
 class MainSpaceinvader {
 private:
-  uint16_t timer = 0;
-  Alien arr[5][3];
-  std::list<Plasma*> shoots;
+  Alien aliens[5][3];
+  Plasma shoots[4]{Plasma(128, 128, 5, 2)};
+  int timer = 0;
   enum DIRECTION { LEFT, RIGHT };
   DIRECTION direction = RIGHT;
+  bool down = false;
 
   void createAliens(void);
   void handleAliens(void);

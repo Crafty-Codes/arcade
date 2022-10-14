@@ -9,8 +9,10 @@ private:
 public:
   const uint8_t HEIGHT;
   const uint8_t WIDTH;
+  Plasma();
   Plasma(uint8_t _x, uint8_t _y, uint8_t _height, uint8_t _width);
 
+  void setPos(uint8_t _x, uint8_t _y);
   uint8_t getX();
   uint8_t getY();
 

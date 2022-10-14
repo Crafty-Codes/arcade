@@ -6,6 +6,7 @@
 #include "spaceinvader/obj/Plasma.h"
 #include <stdlib.h>
 #include <vector>
+#include <iostream>
 
 extern "C" {
 #include "GUI_Paint.h"
