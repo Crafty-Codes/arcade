@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
+
+set( CMAKE_CXX_COMPILER "arm-none-eabi-g++" )
+set( CMAKE_C_COMPILER "arm-none-eabi-gcc" )
+
 include(../pico-sdk/pico_sdk_init.cmake)
 
 project(arcadeHall)
@@ -23,6 +27,7 @@ add_subdirectory(lib/LCD)
 add_subdirectory(lib/Fonts)
 add_subdirectory(lib/GUI)
 add_subdirectory(flappy)
+add_subdirectory(spaceinvader)
 
 
 
@@ -34,6 +39,7 @@ include_directories(./lib/LCD)
 include_directories(./lib/Infrared)
 include_directories(./lib/OLED)
 include_directories(./flappy)
+include_directories(./spaceinvader)
 include_directories(./screen)
 include_directories(./util)
 
@@ -48,7 +54,7 @@ pico_add_extra_outputs(arcade)
 target_include_directories(arcade
     PRIVATE 
     /workspaces/arcade/source/flappy
-        
+    /workspaces/arcade/source/spaceinvader       
 )
 
 target_link_libraries(arcade LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi)
