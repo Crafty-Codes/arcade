@@ -1,1 +1,5 @@
-﻿void mainFlappy(void);
+﻿class MainFlappy
+{
+public:
+    void executeFlappy(void);
+};

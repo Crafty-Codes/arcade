@@ -1,14 +1,19 @@
 ﻿#include "flappy/MainFlappy.h"
+
+extern "C"{
 #include "spaceinvader/MainSpaceinvader.h"
 #include "image/Draw.h"
 #include "image/StartScreen.h"
 #include "LCD_1in44.h"
 #include "screen/Screen.h"
 #include <stdint.h>
+}
 
 int main(void)
 {
   initDisplay();
+
+  MainFlappy flappy;
 
   uint8_t pos = 0;
   while (1)
@@ -26,7 +31,7 @@ int main(void)
       switch (pos)
       {
       case 0:
-        mainFlappy();
+        flappy.executeFlappy();
         break;
 
       case 1:

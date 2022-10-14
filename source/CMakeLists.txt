@@ -2,17 +2,20 @@ cmake_minimum_required(VERSION 3.17)
 
 set( CMAKE_CXX_COMPILER "arm-none-eabi-g++" )
 set( CMAKE_C_COMPILER "arm-none-eabi-gcc" )
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 include(../pico-sdk/pico_sdk_init.cmake)
 
-project(arcadeHall)
+project(arcadeHall C CXX ASM)
 
 pico_sdk_init()
 
+enable_language(CXX)
 enable_language(ASM)
 
 add_executable(arcade 
-main.c
+main.cpp
 screen/Screen.c
 util/Random.c
 )

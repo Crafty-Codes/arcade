@@ -1,4 +1,5 @@
 ﻿#include "MainFlappy.h"
+extern "C"{
 #include "GUI_Paint.h"
 #include "storage/Image.h"
 #include <stdio.h>
@@ -9,8 +10,9 @@
 #include "storage/Scoreboard.h"
 #include "obj/Bird.h"
 #include "obj/Tube.h"
+}
 
-void mainFlappy(void)
+void MainFlappy::executeFlappy(void)
 {
 
   bool gameFlappy = true;
