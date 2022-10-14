@@ -1,6 +1,8 @@
 #include "Scoreboard.h"
+extern "C"{
 #include <stdint.h>
 #include "../GUI/GUI_Paint.h"
+}
 
 uint8_t highscore = 0;
 uint8_t score = 0;

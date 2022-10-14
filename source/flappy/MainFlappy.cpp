@@ -1,13 +1,14 @@
 ﻿#include "MainFlappy.h"
+#include "storage/Scoreboard.h"
+#include "storage/Image.h"
+
 extern "C"{
 #include "GUI_Paint.h"
-#include "storage/Image.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "obj/ObjHandler.h"
 #include "LCD_1in44.h"
-#include "storage/Scoreboard.h"
 #include "obj/Bird.h"
 #include "obj/Tube.h"
 }
