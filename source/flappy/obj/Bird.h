@@ -1,6 +1,4 @@
-#include "stdint.h"
-#include "Screen.h"
-#include "GUI_Paint.h"
+#include <stdint.h>
 
 extern int16_t xBird;
 extern int16_t yBird;

@@ -1,6 +1,7 @@
-#include "stdint.h"
+extern "C"{
 #include "Screen.h"
 #include "GUI_Paint.h"
+}
 
 int16_t xBird = 59;
 int16_t yBird = 60;

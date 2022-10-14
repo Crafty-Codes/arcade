@@ -1,7 +1,11 @@
 #include "ObjHandler.h"
 #include "Bird.h"
 #include "Tube.h"
+extern "C"{
+#include "Screen.h"
+#include "GUI_Paint.h"
 #include "../storage/Scoreboard.h"
+}
 
 bool collisionHandler(void)
 {

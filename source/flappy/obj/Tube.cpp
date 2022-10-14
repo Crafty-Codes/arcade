@@ -1,8 +1,11 @@
 #include "Tube.h"
 #include "../screen/Screen.h"
+#include "../storage/Scoreboard.h"
+
+extern "C"{
 #include "../lib/GUI/GUI_Paint.h"
 #include "../util/Random.h"
-#include "../storage/Scoreboard.h"
+}
 
 uint8_t yTube = 100;
 uint8_t xTube = 128;
