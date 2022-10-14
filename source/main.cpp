@@ -3,20 +3,28 @@
 #include "image/StartScreen.h"
 #include "screen/Screen.h"
 #include "spaceinvader/MainSpaceinvader.h"
+#include "spaceinvader/obj/Plasma.h"
 #include <stdlib.h>
+#include <vector>
 
 extern "C" {
 #include "GUI_Paint.h"
 #include "LCD_1in44.h"
+#include "tusb.h"
+#include <ctype.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 }
 
 int main(void) {
   initDisplay();
+  // minicom -b 115200 -o -D /dev/ttyACM0
+  stdio_init_all();
 
   MainFlappy flappy;
   MainSpaceinvader spaceinvader;
-
   uint8_t pos = 0;
   while (1) {
     Paint_Clear(WHITE);
@@ -47,7 +55,7 @@ int main(void) {
         ++pos;
       }
     }
-    DEV_Delay_ms(50);
+    // DEV_Delay_ms(50);
   }
 
   return 0;
