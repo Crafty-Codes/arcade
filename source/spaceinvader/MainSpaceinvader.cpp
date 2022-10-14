@@ -50,17 +50,33 @@ void MainSpaceinvader::handleAliens(void) {
   }
 }
 
+void MainSpaceinvader::autoShoot() {
+  for (auto &i : shoots) {
+    i->moveUp(1);
+    Paint_DrawRectangle(i->getX(), i->getY(), i->getX() + 10, i->getY() + 10,
+                        RED, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+    if (i->getY() == 0) {
+      shoots.pop_front();
+    }
+  }
+}
+
 MainSpaceinvader::MainSpaceinvader() {}
 
 void MainSpaceinvader::executeSpaceinvader() {
   createAliens();
+  shoots.emplace_back(new Plasma(shuttleX + 4, shuttleY, 5, 2));
 
   while (1) {
     Paint_Clear(BLACK);
 
     handleAliens();
 
-    shuttleHandle();
+    handleShuttle();
+
+    autoShoot();
+
+    DEV_Delay_ms(100);
 
     LCD_1IN44_Display(BlackImage);
   }

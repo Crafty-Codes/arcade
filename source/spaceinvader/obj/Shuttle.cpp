@@ -1,4 +1,6 @@
 #include "Shuttle.h"
+#include "Plasma.h"
+
 extern "C" {
 #include "DEV_Config.h"
 #include "GUI_Paint.h"
@@ -8,14 +10,14 @@ extern "C" {
 uint8_t shuttleX = SCREENWIDTH / 2;
 uint8_t shuttleY = SCREENHEIGHT - 20;
 
-void shuttleHandle() {
+void handleShuttle() {
   if (DEV_Digital_Read(key1) == 0) {
     if (shuttleX != 0) {
       shuttleX -= 1;
     }
   }
   if (DEV_Digital_Read(key2) == 0) {
-    if (shuttleX+10 != SCREENWIDTH) {
+    if (shuttleX + 10 != SCREENWIDTH) {
       shuttleX += 1;
     }
   }

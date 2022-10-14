@@ -3,4 +3,4 @@
 extern uint8_t shuttleX;
 extern uint8_t shuttleY;
 
-void shuttleHandle();
+void handleShuttle();
