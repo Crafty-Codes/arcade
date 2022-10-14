@@ -1,10 +1,10 @@
 #include "Tube.h"
 #include "../screen/Screen.h"
 #include "../storage/Scoreboard.h"
+#include "../util/Random.h"
 
 extern "C"{
 #include "../lib/GUI/GUI_Paint.h"
-#include "../util/Random.h"
 }
 
 uint8_t yTube = 100;

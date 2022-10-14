@@ -1,4 +1,6 @@
-﻿#include "flappy/MainFlappy.h"
+﻿#include <stdlib.h>
+#include <stdlib.h>
+#include "flappy/MainFlappy.h"
 
 extern "C"{
 #include "spaceinvader/MainSpaceinvader.h"
