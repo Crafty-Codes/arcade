@@ -18,6 +18,8 @@ add_executable(arcade
 main.cpp
 screen/Screen.cpp
 util/Random.cpp
+image/Draw.cpp
+image/StartScreen.cpp
 )
 
 
@@ -58,6 +60,7 @@ target_include_directories(arcade
     PRIVATE 
     /workspaces/arcade/source/flappy
     /workspaces/arcade/source/spaceinvader       
+    /workspaces/arcade/source/image       
 )
 
 target_link_libraries(arcade LCD OLED Infrared Icm20948 GUI Fonts Config pico_stdlib hardware_spi)

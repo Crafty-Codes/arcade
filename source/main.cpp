@@ -1,26 +1,24 @@
-﻿#include <stdlib.h>
-#include <stdlib.h>
-#include "flappy/MainFlappy.h"
-#include "spaceinvader/MainSpaceinvader.h"
-#include "screen/Screen.h"
-
-extern "C"{
+﻿#include "flappy/MainFlappy.h"
 #include "image/Draw.h"
 #include "image/StartScreen.h"
+#include "screen/Screen.h"
+#include "spaceinvader/MainSpaceinvader.h"
+#include <stdlib.h>
+
+extern "C" {
+#include "GUI_Paint.h"
 #include "LCD_1in44.h"
 #include <stdint.h>
 }
 
-int main(void)
-{
+int main(void) {
   initDisplay();
 
   MainFlappy flappy;
   MainSpaceinvader spaceinvader;
 
   uint8_t pos = 0;
-  while (1)
-  {
+  while (1) {
     Paint_Clear(WHITE);
 
     DrawImage(startscreen);
@@ -29,12 +27,10 @@ int main(void)
 
     LCD_1IN44_Display(BlackImage);
 
-    if (DEV_Digital_Read(key1) == 0)
-    {
-        Paint_Clear(BLACK);
+    if (DEV_Digital_Read(key1) == 0) {
+      Paint_Clear(BLACK);
 
-      switch (pos)
-      {
+      switch (pos) {
       case 0:
         flappy.executeFlappy();
         break;
@@ -44,15 +40,10 @@ int main(void)
       default:
         break;
       }
-    }
-    else if (DEV_Digital_Read(key2) == 0)
-    {
-      if (pos == 16)
-      {
+    } else if (DEV_Digital_Read(key2) == 0) {
+      if (pos == 16) {
         pos = 0;
-      }
-      else
-      {
+      } else {
         ++pos;
       }
     }
