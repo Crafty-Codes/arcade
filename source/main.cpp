@@ -1,9 +1,9 @@
 ﻿#include <stdlib.h>
 #include <stdlib.h>
 #include "flappy/MainFlappy.h"
+#include "spaceinvader/MainSpaceinvader.h"
 
 extern "C"{
-#include "spaceinvader/MainSpaceinvader.h"
 #include "image/Draw.h"
 #include "image/StartScreen.h"
 #include "LCD_1in44.h"

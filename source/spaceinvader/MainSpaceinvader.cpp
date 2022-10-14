@@ -1,9 +1,12 @@
 #include "MainSpaceinvader.h"
+
+extern "C"{
 #include "obj/Alien.h"
 #include "obj/Shuttle.h"
 #include "GUI_Paint.h"
 #include "LCD_1in44.h"
 #include "../screen/Screen.h"
+}
 
 void mainSpaceinvader()
 {

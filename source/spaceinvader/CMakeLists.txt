@@ -1,5 +1,5 @@
 target_sources(arcade PUBLIC
-MainSpaceinvader.c
+MainSpaceinvader.cpp
 obj/Alien.c
 obj/Shuttle.c
 )
